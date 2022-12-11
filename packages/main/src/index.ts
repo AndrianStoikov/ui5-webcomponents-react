@@ -32,6 +32,7 @@ export * from './components/ResponsiveGridLayout';
 export * from './components/SelectDialog';
 export * from './components/SplitterElement';
 export * from './components/SplitterLayout';
+export * from './components/P13nDialog';
 export * from './components/Text';
 export * from './components/ThemeProvider';
 export * from './components/Toolbar';
