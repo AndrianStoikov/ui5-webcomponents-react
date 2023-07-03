@@ -38,7 +38,7 @@ export interface ToolbarPropTypes extends Omit<CommonProps, 'onClick' | 'childre
    *
    * __Note:__ Although this prop accepts all `ReactNode` types, it is strongly recommended to not pass `string`, `number` or a React Portal to it.
    *
-   * __Note:__ Only components displayed inside the Toolbar are supported as children, i.e. elements positioned outside the normal flow of the document (like dialogs or popovers), can cause undesired behavior.
+   * __Note:__ Only components displayed inside the Toolbar are supported as children, i.e. elements positioned outside the normal flow of the document (like dialogs or popovers) can cause undesired behavior.
    */
   children?: ReactNode | ReactNode[];
   /**
