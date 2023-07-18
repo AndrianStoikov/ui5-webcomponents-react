@@ -36,7 +36,6 @@ interface ColumnHeaderContainerProps {
   isRtl: boolean;
   portalContainer: Element;
   columnVirtualizer: Virtualizer<DivWithCustomScrollProp, Element>;
-  scaleXFactor?: number;
   uniqueId: string;
 }
 
@@ -58,7 +57,6 @@ export const ColumnHeaderContainer = forwardRef<HTMLDivElement, ColumnHeaderCont
     isRtl,
     portalContainer,
     columnVirtualizer,
-    scaleXFactor,
     uniqueId
   } = props;
 
@@ -103,7 +101,6 @@ export const ColumnHeaderContainer = forwardRef<HTMLDivElement, ColumnHeaderCont
               id={`${uniqueId}${rest?.id ?? ''}`}
               columnId={rest.id}
               visibleColumnIndex={index}
-              columnIndex={virtualColumn.index}
               onSort={onSort}
               onGroupBy={onGroupByChanged}
               onDragStart={onDragStart}
@@ -115,9 +112,9 @@ export const ColumnHeaderContainer = forwardRef<HTMLDivElement, ColumnHeaderCont
               headerTooltip={column.headerTooltip}
               isDraggable={(column.canReorder || !column.disableDragAndDrop) && !resizeInfo.isResizingColumn}
               virtualColumn={virtualColumn}
+              columnVirtualizer={columnVirtualizer}
               isRtl={isRtl}
               portalContainer={portalContainer}
-              scaleXFactor={scaleXFactor}
             >
               {column.render('Header')}
             </ColumnHeader>
