@@ -159,7 +159,7 @@ export const VirtualTableBody = (props: VirtualTableBodyProps) => {
           lastNonEmptyRow.current = row;
         }
         prepareRow(row);
-        const rowProps = row.getRowProps({ 'aria-rowindex': virtualRow.index });
+        const rowProps = row.getRowProps({ 'aria-rowindex': virtualRow.index, 'data-index': virtualRow.index });
         const isNavigatedCell = markNavigatedRow(row);
         const RowSubComponent = typeof renderRowSubComponent === 'function' ? renderRowSubComponent(row) : undefined;
 
@@ -183,6 +183,7 @@ export const VirtualTableBody = (props: VirtualTableBodyProps) => {
         return (
           // eslint-disable-next-line react/jsx-key
           <div
+            ref={rowVirtualizer.measureElement}
             {...rowProps}
             style={{
               ...(rowProps.style ?? {}),
@@ -212,9 +213,9 @@ export const VirtualTableBody = (props: VirtualTableBodyProps) => {
               const directionStyles = isRtl
                 ? {
                     transform: `translateX(-${virtualColumn.start}px)`,
-                    right: 0
+                    insertInlineStart: 0
                   }
-                : { transform: `translateX(${virtualColumn.start}px)`, left: 0 };
+                : { transform: `translateX(${virtualColumn.start}px)`, insertInlineStart: 0 };
               if (!cell) {
                 return null;
               }
