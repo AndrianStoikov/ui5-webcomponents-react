@@ -1,7 +1,9 @@
+import type { Virtualizer } from '@tanstack/react-virtual';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { clsx } from 'clsx';
 import type { MutableRefObject, ReactNode } from 'react';
 import React, { useCallback, useMemo, useRef } from 'react';
+import type { DivWithCustomScrollProp } from '../index.js';
 import type { ScrollToRefType } from '../interfaces.js';
 import { getSubRowsByString } from '../util/index.js';
 import { EmptyRow } from './EmptyRow.js';
@@ -27,7 +29,7 @@ interface VirtualTableBodyProps {
   alwaysShowSubComponent: boolean;
   dispatch?: (e: { type: string; payload?: Record<string, unknown> }) => void;
   subComponentsHeight?: Record<string, { rowId: string; subComponentHeight?: number }>;
-  columnVirtualizer: Record<string, any>;
+  columnVirtualizer: Virtualizer<DivWithCustomScrollProp, Element>;
   manualGroupBy?: boolean;
   subRowsKey: string;
 }
@@ -190,7 +192,7 @@ export const VirtualTableBody = (props: VirtualTableBodyProps) => {
               height: `${updatedHeight}px`
             }}
             ref={(node) => {
-              virtualRow.measureElement(node);
+              columnVirtualizer.measureElement(node);
             }}
             aria-rowindex={rowProps['aria-rowindex'] + 1}
           >
